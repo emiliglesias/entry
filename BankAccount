@@ -1,0 +1,62 @@
+class BankAccount:
+    def __init__(self, account_number, pin):
+        self.account_number = account_number
+        self.pin = pin
+        self.balance = 0
+
+    def login(self, account_number, pin):
+        return self.account_number == account_number and self.pin == pin
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            print(f"Deposited {amount}. New balance: {self.balance}")
+        else:
+            print("Invalid Amount.")
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.balance:
+            self.balance -= amount
+            print(f"Withdrew {amount}. New balance: {self.balance}")
+        else:
+            print("Insufficient funds.")
+
+    def check_balance(self):
+        print(f"Balance: {self.balance}")
+
+    def change_pin(self, current_pin, new_pin):
+        if self.pin == current_pin:
+            self.pin = new_pin
+            print("PIN changed.")
+        else:
+            print("Invalid PIN.")
+    @staticmethod
+    def login_try(account,account_number, pin):
+        if account.login(account_number, pin):
+            print("login Success")
+        else:
+            print("Invalid Credentials")
+
+
+
+emil = BankAccount("12345","1234")
+
+BankAccount.login_try(emil,"12345","1234")
+emil.deposit(100)
+emil.check_balance()
+emil.withdraw(40)
+emil.check_balance()
+emil.change_pin("1235","1235")
+
+
+---output----
+
+C:\Users\admin\PycharmProjects\Entri_Class\venv\Scripts\python.exe C:\Users\admin\PycharmProjects\Entri_Class\new.py 
+login Success
+Deposited 100. New balance: 100
+Balance: 100
+Withdrew 40. New balance: 60
+Balance: 60
+Invalid PIN.
+
+Process finished with exit code 0
